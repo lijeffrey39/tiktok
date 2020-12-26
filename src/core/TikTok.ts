@@ -136,6 +136,7 @@ export class TikTokScraper extends EventEmitter {
         method = 'POST',
         headers,
         verifyFp = '',
+        maxCursor,
     }: TikTokConstructor) {
         super();
         this.verifyFp = verifyFp;
@@ -173,7 +174,7 @@ export class TikTokScraper extends EventEmitter {
         this.historyPath = process.env.SCRAPING_FROM_DOCKER ? '/usr/app/files' : historyPath || tmpdir();
         this.idStore = '';
         this.noWaterMark = noWaterMark;
-        this.maxCursor = 0;
+        this.maxCursor = maxCursor || 0;
         this.noDuplicates = [];
         this.timeout = timeout;
         this.bulk = bulk;
@@ -840,7 +841,7 @@ export class TikTokScraper extends EventEmitter {
             return {
                 id: this.idStore ? this.idStore : this.input,
                 secUid: '',
-                sourceType: CONST.sourceType.user,
+                sourceType: CONST.sourceType.userLiked,
                 count: this.number > 30 ? 50 : 30,
                 minCursor: 0,
                 maxCursor: 0,
@@ -864,7 +865,7 @@ export class TikTokScraper extends EventEmitter {
             return {
                 id: this.idStore,
                 secUid: '',
-                sourceType: CONST.sourceType.user,
+                sourceType: CONST.sourceType.userLiked,
                 count: this.number > 30 ? 50 : 30,
                 minCursor: 0,
                 maxCursor: 0,

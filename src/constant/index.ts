@@ -15,6 +15,7 @@ export = {
     history: ['user', 'hashtag', 'trend', 'music'],
     sourceType: {
         user: 8,
+        userLiked: 9,
         music: 11,
         trend: 12,
     },

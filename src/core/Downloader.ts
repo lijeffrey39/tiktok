@@ -4,7 +4,7 @@
 import request, { OptionsWithUri } from 'request';
 import rp from 'request-promise';
 import { Agent } from 'http';
-import { createWriteStream, writeFile } from 'fs';
+import { createWriteStream, writeFile, existsSync } from 'fs';
 import { fromCallback } from 'bluebird';
 import archiver from 'archiver';
 import { SocksProxyAgent } from 'socks-proxy-agent';
@@ -141,13 +141,20 @@ export class Downloader {
                 collector,
                 asyncDownload,
                 (item: PostCollector, cb) => {
+                    const path = `${saveDestination}/${item.id}.mp4`;
+                    if (existsSync(path)) {
+                        console.log("YER");
+                        cb(null);
+                        return;
+                    }
+                    console.log(path);
                     this.toBuffer(item)
                         .then(async buffer => {
                             item.downloaded = true;
                             if (zip) {
                                 archive.append(buffer, { name: `${item.id}.mp4` });
                             } else {
-                                await fromCallback(cback => writeFile(`${saveDestination}/${item.id}.mp4`, buffer, cback));
+                                await fromCallback(cback => writeFile(path, buffer, cback));
                             }
                             cb(null);
                         })

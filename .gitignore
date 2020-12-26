@@ -3,6 +3,7 @@ reverse_eng/
 build/
 coverage/
 garbage/
+jeffreyli6/
 
 .DS_Store
 *.csv

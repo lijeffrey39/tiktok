@@ -2,8 +2,16 @@ import { user } from '../src';
 
 (async () => {
     try {
-        const posts = await user('tiktok', { number: 1, noWaterMark: true });
-        console.log(posts.collector);
+        const posts = await user('jeffreyli6', {
+            number: 10000,
+            noWaterMark: true,
+            download: true,
+            filetype: "csv",
+            asyncDownload: 10,
+        });
+        posts.collector.forEach(col => {
+            console.log(col.text);
+        });
     } catch (error) {
         console.log(error);
     }

@@ -46,6 +46,7 @@ export interface Options {
     method?: string;
     headers?: Headers;
     verifyFp?: string;
+    maxCursor?: number;
 }
 export interface TikTokConstructor {
     download: boolean;
@@ -75,6 +76,7 @@ export interface TikTokConstructor {
     method?: string;
     headers: Headers;
     verifyFp?: string;
+    maxCursor?: number;
 }
 
 export interface Hashtags {
