@@ -14,3 +14,5 @@ yarn.lock
 yarn-error.log
 proxy
 bulk
+videos.csv
+__pycache__

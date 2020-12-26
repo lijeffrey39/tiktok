@@ -213,7 +213,7 @@ from ast import literal_eval
 
 def findVideos():
     d = {}
-    with open("test.csv") as fp:
+    with open("videos.csv") as fp:
         reader = csv.reader(fp, delimiter=",", quotechar='"')
         data_read = [row for row in reader]
         for r in data_read:
